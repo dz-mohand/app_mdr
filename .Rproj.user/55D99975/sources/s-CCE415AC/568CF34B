@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540736650187.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "568CF34B",
+    "lastKnownWriteTime" : 1540751925,
+    "last_content_update" : 1540751925475,
+    "path" : "~/Documents/Projet/Persos/app_mdr/global.R",
+    "project_path" : "global.R",
+    "properties" : {
+        "cursorPosition" : "14,1",
+        "scrollLine" : "16"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

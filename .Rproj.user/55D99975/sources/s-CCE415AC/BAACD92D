@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540412349869.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "477980418",
+    "id" : "BAACD92D",
+    "lastKnownWriteTime" : 1541110164,
+    "last_content_update" : 1541110164914,
+    "path" : "~/Documents/Projet/Persos/app_mdr/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+        "cursorPosition" : "23,16",
+        "scrollLine" : "10",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

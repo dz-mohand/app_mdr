@@ -1,0 +1,40 @@
+function(input, output, session) {
+
+fields <- c("titre_bl", "contenu_bl")
+#ajout <- eventReactive(input$go, {
+#  df1 <- as.data.frame(toString(input$titre_bl),toString(input$contenu_bl))  
+#  saveData(df1)
+#})
+
+formData <- reactive({
+  data1 <- sapply(fields, function(x) input[[x]])
+  data1
+})
+
+output$mytime <- renderTimevis(timevis())
+observeEvent(input$btn, {
+  addItem("mytime", list(id = id, content = input$label_dt , start = input$date))
+  centerItem("mytime", id)
+})
+# When the Submit button is clicked, save the form data
+observeEvent(input$go, {
+  saveData(formData())
+})
+
+
+fil_actualitee <- loadData()
+output$fil_actualite <- renderTable({ as.data.frame(fil_actualitee)})
+
+v <- list()
+for (i in 1:length(fil_actualitee[[1]])){
+  v[[i]] <- box(title = fil_actualitee[[1]][i], width = 4, background = "light-blue", fil_actualitee[[2]][i],actionButton(i,i))
+}
+output$nlp_sentences_tree <- renderUI(v)
+#output$example <-   renderUI({
+#  
+#  x <- paste0("<div class=\"alert alert-dismissible alert-warning\">
+#                          <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><h4 class=\"alert-heading\">", paste(fil_actualitee[1,2], collapse = "</h4><p class=\"mb-0\"><a href=\"#\" class=\"alert-link\"></a>.</p></div>"))
+#  HTML(x)
+#})
+
+}

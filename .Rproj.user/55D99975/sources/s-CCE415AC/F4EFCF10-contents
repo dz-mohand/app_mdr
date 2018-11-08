@@ -1,0 +1,58 @@
+library(mongolite)
+library(shiny)
+library(dplyr)
+library(shinydashboard)
+library(timevis)
+
+options(mongodb = list(
+  "host" = "127.0.0.1",
+  "port" = "27017",
+  "username" = "mohand",
+  "password" = "mohand"
+))
+databaseName <- "test"
+collectionName <- "mdr"
+
+saveData <- function(data1) {
+  # Connect to the database
+  db <- mongo(collection = collectionName,
+              url = sprintf(
+                "mongodb://%s:%s@%s/%s",
+                options()$mongodb$username,
+                options()$mongodb$password,
+                options()$mongodb$host,
+                databaseName))
+  
+  # Insert the data into the mongo collection as a data.frame
+  data1 <- as.data.frame(t(data1))
+  db$insert(data1)
+}
+
+loadData <- function() {
+  # Connect to the database
+  db <- mongo(collection = collectionName,
+              url = sprintf(
+                "mongodb://%s:%s@%s/%s",
+                options()$mongodb$username,
+                options()$mongodb$password,
+                options()$mongodb$host,
+                databaseName))
+  
+  # Read all the entries
+  data <- db$find()
+  data
+}
+
+fil_actualitee <- loadData()
+
+fil_actualitee[[1]]
+
+length(fil_actualitee[[1]])
+
+
+
+v <- list()
+for (i in 1:length(fil_actualitee[[1]])){
+  v[[i]] <- box(width = 8,"Mohand" ,actionButton(i,i))
+}
+output$nlp_sentences_tree <- renderUI(v)

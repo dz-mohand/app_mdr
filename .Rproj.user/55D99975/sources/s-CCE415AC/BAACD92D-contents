@@ -1,0 +1,69 @@
+library(shinydashboard)
+
+ui <- dashboardPage(
+  dashboardHeader(),
+  dashboardSidebar(sidebarMenu(
+    menuItem("Table à blague", tabName = "dashboard"),
+    menuItem("Agenda", tabName = "rawdata"),
+    menuItem("Chapeau l'artiste !", tabName = "chapeau")
+    
+  )),
+  dashboardBody(
+    tabItems(
+      tabItem("dashboard",
+              fluidRow(
+                box(
+                  textInput("titre_bl", label = h3("Le titre de ta blague"), value = "un peu d'originalité merde !"),
+                  textInput("contenu_bl", label = h3("ta blague .. "), value = "Fais moi rire .."),
+                  actionButton("go", "Go")
+                ),
+                box(
+                  tableOutput("fil_actualite")
+                ),
+                  uiOutput("nlp_sentences_tree")
+                
+                )
+              
+          ),
+      tabItem("rawdata",
+              fluidRow(
+                box(
+                  timevisOutput("mytime"),
+                  textInput("label_dt", label = h3("Je fais quoi le ?"), value = "Je fais quoi.. ? "),
+                  dateInput("date", label = h3("Date input"), value = "2014-01-01"),
+                  actionButton("btn", "Add item and center")
+                ),
+                box(
+                  title = "Title 5", width = 4, background = "light-blue",
+                  "A box with a solid light-blue background"
+                )
+              )
+      ),tabItem("chapeau",
+                fluidRow(
+                  box(
+                    timevisOutput("mytime1"),
+                    textInput("label_dt1", label = h3("Je fais quoi le ?"), value = "Je fais quoi.. ? "),
+                    dateInput("date1", label = h3("Date input"), value = "2014-01-01"),
+                    actionButton("btn1", "Add item and center")
+                  ),
+                  box(
+                    title = "Title 5", width = 4, background = "light-blue",
+                    "A box with a solid light-blue background"
+                  ),
+                  box(tags$div(
+                    HTML("<div class=\"alert alert-dismissible alert-warning\">
+                          <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><h4 class=\"alert-heading\">Warning!</h4><p class=\"mb-0\">list(name = \"div\", attribs = list(id = \"fil_actualite\", class = \"shiny-html-output\"), children = list()) <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p></div>")
+                  ))
+                ),
+                box(
+                  #htmlOutput("example")               
+                  )
+      )
+      
+      
+        )
+    
+  )
+)
+
+)

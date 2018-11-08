@@ -1,0 +1,40 @@
+library(mongolite)
+
+options(mongodb = list(
+  "host" = "127.0.0.1",
+  "port" = "27017",
+  "username" = "mohand",
+  "password" = "mohand"
+))
+databaseName <- "test"
+collectionName <- "mdr"
+
+saveData <- function(data) {
+  # Connect to the database
+  db <- mongo(collection = collectionName,
+              url = sprintf(
+                "mongodb://%s:%s@%s/%s",
+                options()$mongodb$username,
+                options()$mongodb$password,
+                options()$mongodb$host,
+                databaseName))
+  # Insert the data into the mongo collection as a data.frame
+  data <- as.data.frame("Mohand est un patron")
+  db$insert(data)
+}
+
+loadData <- function() {
+  # Connect to the database
+  db <- mongo(collection = collectionName,
+              url = sprintf(
+                "mongodb://%s:%s@%s/%s",
+                options()$mongodb$username,
+                options()$mongodb$password,
+                options()$mongodb$host,
+                databaseName))
+  # Read all the entries
+  data <- db$find()
+  data
+}
+
+
